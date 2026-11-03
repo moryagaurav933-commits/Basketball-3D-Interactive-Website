@@ -108,7 +108,7 @@ Follow these steps to run the project locally on your machine:
 
 ## 🌐 Live Deployment
 
-- **Live URL**: *(Deploying now...)*
+- **Live URL**: [https://basketball-orignal-website-main-kohl.vercel.app](https://basketball-orignal-website-main-kohl.vercel.app)
 - **GitHub Repository**: [https://github.com/moryagaurav933-commits/Basketball-3D-Interactive-Website](https://github.com/moryagaurav933-commits/Basketball-3D-Interactive-Website)
 
 ---
