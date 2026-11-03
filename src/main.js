@@ -62,7 +62,19 @@ dracoLoader.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5
 const loader = new GLTFLoader();
 loader.setDRACOLoader(dracoLoader);
 
+const loaderEl = document.getElementById('model-loader');
+const loaderPct = document.getElementById('loader-pct');
+
 loader.load(`${import.meta.env.BASE_URL}models/basketball.glb`, (gltf) => {
+  if (loaderEl) {
+    gsap.to(loaderEl, {
+      opacity: 0,
+      scale: 0.9,
+      duration: 0.45,
+      ease: 'power2.out',
+      onComplete: () => loaderEl.remove()
+    });
+  }
   ball = gltf.scene;
 
   const box = new THREE.Box3().setFromObject(ball);
@@ -89,7 +101,15 @@ loader.load(`${import.meta.env.BASE_URL}models/basketball.glb`, (gltf) => {
   scene.add(ball);
   ballLoaded = true;
   ballEntrance();
-}, undefined, (err) => console.error('GLB Error:', err));
+}, (xhr) => {
+  if (xhr.lengthComputable && loaderPct) {
+    const pct = Math.round((xhr.loaded / xhr.total) * 100);
+    loaderPct.textContent = `${pct}%`;
+  }
+}, (err) => {
+  console.error('GLB Error:', err);
+  if (loaderEl) loaderEl.innerHTML = `<span style="color:#ef4444;">Failed to load 3D asset</span>`;
+});
 
 // ─── ENTRANCE (one-time only — no continuous motion) ────────────────────────
 function ballEntrance() {

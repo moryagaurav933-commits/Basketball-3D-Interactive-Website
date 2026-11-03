@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/src/style.css" />
+  <link rel="preload" href="/models/basketball.glb" as="fetch" crossorigin />
 </head>
 <body>
 
@@ -43,6 +44,12 @@
   ══════════════════════════════════════ -->
   <section class="section hero-section" id="hero-section">
     <canvas id="hero-canvas"></canvas>
+
+    <!-- 3D Model Loading Indicator -->
+    <div class="model-loader glass-pill" id="model-loader">
+      <span class="loader-spinner"></span>
+      <span class="loader-text">Loading 3D Court Ball... <strong id="loader-pct">0%</strong></span>
+    </div>
 
     <!-- Product Hunt badge -->
     <div class="ph-badge-wrap" id="ph-badge">
